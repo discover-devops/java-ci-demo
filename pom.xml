@@ -6,11 +6,29 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.demo</groupId>
-
     <artifactId>java-ci-demo</artifactId>
-
     <version>1.0</version>
-
     <packaging>jar</packaging>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.demo.HelloWorld</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+
+            </plugin>
+
+        </plugins>
+    </build>
 
 </project>
