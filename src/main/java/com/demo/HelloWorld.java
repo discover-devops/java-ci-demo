@@ -15,15 +15,18 @@ public class HelloWorld {
         String version = "Version 2 - Deployed via Jenkins CI/CD";
         String deployTime = LocalDateTime.now().toString();
 
-        HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
+        // Bind to all interfaces so it is accessible externally
+        HttpServer server = HttpServer.create(new InetSocketAddress("0.0.0.0", 8000), 0);
 
         server.createContext("/", new HttpHandler() {
             public void handle(HttpExchange exchange) {
+
                 try {
 
-                    String response = "Hello from Jenkins CI/CD Pipeline\n"
-                                    + version + "\n"
-                                    + "Deployment Time: " + deployTime;
+                    String response =
+                            "Hello from Jenkins CI/CD Pipeline\n" +
+                            version + "\n" +
+                            "Deployment Time: " + deployTime + "\n";
 
                     exchange.sendResponseHeaders(200, response.length());
 
@@ -42,5 +45,6 @@ public class HelloWorld {
 
         System.out.println("Server started on port 8000");
         System.out.println("Application Version: " + version);
+        System.out.println("Deployment Time: " + deployTime);
     }
 }
